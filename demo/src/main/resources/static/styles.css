@@ -1,0 +1,420 @@
+@font-face {
+  font-family: 'Quicksand';
+  src: url("fonts/Quicksand-Medium.ttf");
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+}
+
+.nav-bar {
+  background-color: #000400;
+  text-align: right;
+}
+
+.mobile-buttons {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  padding-bottom: 50px;
+}
+
+.mobile-buttons a {
+  padding-top: 10px;
+}
+
+.css-input {
+  padding: 3px;
+  border-style: solid;
+  font-size: 19px;
+  border-radius: 50px;
+  border-width: 3px;
+  text-align: center;
+  border-color: #9e989e;
+  box-shadow: 0px 0px 5px 0px rgba(148, 148, 148, .75);
+  background-color: #dbdbdb;
+  text-shadow: 0px 0px 1px rgba(42, 42, 42, .26);
+}
+
+.css-input:focus {
+  outline: none;
+}
+
+.css-input i {
+  padding-left: 5px;
+}
+
+.css-input2 {
+  width: auto;
+  font-size: 19px;
+  height: inherit;
+  background-color: #dbdbdb;
+  border-style: none;
+  text-align: center;
+  text-shadow: 0px 0px 1px rgba(42, 42, 42, .26);
+  border-radius: 50px;
+}
+
+.css-input2:focus {
+  outline: none;
+}
+
+a {
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.main {
+  height: 400px;
+  width: inherit;
+  background-image: url("images/park.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+#moviemain {
+  background-image: linear-gradient(rgba(29, 29, 29, 0.65) 0px, rgb(29, 29, 29) 100%), url("images/park.jpg");
+  height: auto;
+  margin: 0;
+}
+
+#moviemain h1 {
+  margin-bottom: 20px;
+}
+
+#moviemain .bookmarkicon{
+  float:right;
+  padding-right: 20px;
+}
+
+#moviemain .bookmarkicon:hover{
+  cursor: pointer;
+}
+
+.main p {
+  margin: 0;
+  padding: 10px;
+}
+
+.homeh1 {
+  padding-top: 100px;
+}
+
+.main h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.main form {
+  display: flex;
+  justify-content: space-around;
+  height: inherit;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.main form h1 {
+  width: 30%;
+}
+
+.main form p {
+  width: 30%;
+}
+
+.main form input {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 10px 20px;
+  border: 1px solid #b7b7b7;
+  -webkit-border-radius: 30px / 130px;
+  border-radius: 30px / 130px;
+  font: normal 16px/normal Impact, Charcoal, sans-serif;
+  color: rgba(0, 142, 198, 1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(252, 252, 252, 1);
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.66);
+  -webkit-transition: all 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  -moz-transition: all 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  -o-transition: all 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition: all 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+  -webkit-transform-origin: 49% 50% 0;
+  transform-origin: 49% 50% 0;
+  text-align: center;
+}
+
+.main form input:focus {
+  outline: none;
+}
+
+.login-register {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: 1px solid #018dc4;
+  -webkit-border-radius: 9px / 15px;
+  border-radius: 9px / 15px;
+  font: normal 16px/normal Impact, Charcoal, sans-serif;
+  /* color: rgba(0,142,198,1); */
+  color: black;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background-color: lightblue;
+  -webkit-box-shadow: 3px 2px 2px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 2px 2px 0 rgba(0, 0, 0, 0.2);
+  /* text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ; */
+  -webkit-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 300ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.main form button {
+  width: 15%;
+}
+
+footer {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #000400;
+}
+
+.dropdown-content {
+  display: none;
+  margin-top: 6px;
+  /* margin-left: 20px; */
+  position: absolute;
+  background-color: #dbdbdb;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.show {
+  display: block;
+}
+
+.movie {
+  background-color: black;
+  /* height: 30%; */
+}
+
+.movie h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.movie img {
+  width: 15%;
+  /* float: left; */
+}
+
+.movie p {
+  font-size: 10px;
+}
+
+.movie a {
+  /* color:blue; */
+  text-decoration: underline;
+}
+
+.movie a:hover {
+  color: blue;
+}
+
+hr {
+  margin: 0;
+}
+
+
+#mybookmarksmain{
+  height: auto;
+min-height: 100%;
+}
+
+.mybookmarks {
+  display: grid;
+  grid-template-areas:
+    'poster title'
+    'poster paragraph'
+    'hr hr';
+  grid-template-columns: 50% 50%;
+  grid-gap: 0px;
+  padding: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.mybookmarks>div {
+  text-align: center;
+}
+
+.mybookmarks .poster{
+  grid-area: poster;
+}
+
+ .mybookmarks .deleteicon{
+  width: 10%;
+  height: 10%;
+  padding-left: 0;
+  padding-right: 200px;
+}
+
+.mybookmarks .deleteicon:hover{
+  cursor: pointer;
+  opacity: 50%;
+}
+
+.mybookmarks img {
+  height:200px;
+  padding-left: 100px;
+}
+
+.mybookmarks h3{
+  grid-area: title;
+}
+
+.mybookmarks p {
+  grid-area: paragraph;
+}
+
+.mybookmarks hr {
+  grid-area: hr;
+  border-radius: 50%;
+  border: 1px solid lightblue;
+}
+
+
+.mybookmarks a:hover{
+  color:lightblue;
+}
+
+
+
+#mybookmarksmain {
+  background-image: linear-gradient(rgba(29, 29, 29, 0.65) 0px, rgb(29, 29, 29) 100%), url("images/park.jpg");
+}
+
+@media only screen and (min-width: 900px) {
+  .logo {
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    width: 7%;
+  }
+
+  .mobile-buttons {
+    width: 40%;
+    padding-top: 20px;
+    padding-left: 58%;
+    padding-bottom: 5px;
+    font-size: 20px;
+  }
+
+  .main {
+    height: 100%;
+  }
+
+  .main .homeh1 {
+    padding-top: 200px;
+    font-size: 55px;
+    padding-bottom: 30px;
+  }
+
+  .main p {
+    font-size: 20px;
+  }
+
+  .main h1 {
+    font-size: 50px;
+  }
+
+  .main form {
+    align-items: center;
+    height: 60%;
+    padding-top: 170px;
+  }
+
+  .main form input {
+    width: 20%;
+  }
+
+  .main form button {
+    width: 10%;
+  }
+
+  #moviemain {
+    display: grid;
+    grid-template-areas:
+      'title title'
+      'img paragraph'
+      'footer footer';
+    grid-template-columns: 50% 50%;
+    grid-gap: 0px;
+    padding: 0px;
+    width: 100%;
+    /* height: 100%; */
+  }
+
+  #moviemain>div {
+    text-align: center;
+  }
+
+  #moviemain .title {
+    grid-area: title;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-size: 40px;
+    font-style: oblique;
+  }
+
+  #moviemain .img {
+    grid-area: img;
+    height: 700px;
+    padding-left: 100px;
+  }
+
+  #moviemain .paragraph {
+    grid-area: paragraph;
+    font-size: 14px;
+    padding-right: 30%;
+
+  }
+
+  #moviefooter {
+    grid-area: footer;
+  }
+
+  .mybookmarks img {
+    height: 400px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .mybookmarks .deleteicon{
+    margin-bottom: 4%;
+  }
+
+
+  .mybookmarks h3{
+    font-size: 30px;
+  }
+
+  .mybookmarks p {
+    font-size: 25px;
+  }
+}
