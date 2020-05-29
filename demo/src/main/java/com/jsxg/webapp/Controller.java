@@ -35,7 +35,7 @@ public class Controller {
 
     }
 
-    @PutMapping("/users/{username}")
+    @PostMapping("/users/{username}")
     public Boolean loginUser(@RequestBody String payload,@PathVariable String username) throws SQLException, JsonMappingException,
             JsonProcessingException {
         User user = new ObjectMapper().readValue(payload, User.class);

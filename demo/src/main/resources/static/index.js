@@ -44,8 +44,8 @@ input.addEventListener('keyup', function(e) {
           }
         }
       },
-      fail: function() {
-
+      error: function() {
+        window.location.replace("fail.html");
       }
     });
   }, 500);
@@ -72,7 +72,7 @@ var p = window.location.pathname;
 if (p.slice(-10) === 'index.html') {
   sessionStorage.setItem('status', 'loggedOut');
   sessionStorage.setItem('user', "");
-  localStorage[".movieTitle"]="";
+  localStorage[".movieTitle"] = "";
   console.log(sessionStorage.getItem('status'));
 }
 
@@ -85,41 +85,44 @@ if (p.slice(-13) === "register.html") {
     let password = document.querySelector(".password").value;
     console.log(username + email + password);
     if (username == "" || email == "" || password == "") {
-      let message=document.querySelector("form p");
-      message.style.display="block";
-      message.innerHTML="*Please fill in the gaps";
-      message.style.color="red";
-      message.style.fontSize="14px";
-      message.style.fontWeight="bold";
-    }else if (!email.includes("@")){
-      let message=document.querySelector("form p");
-      message.style.display="block";
-      message.innerHTML="*Enter a valid email";
-      message.style.color="red";
-      message.style.fontSize="14px";
-      message.style.fontWeight="bold";
-    }else {
+      let message = document.querySelector("form p");
+      message.style.display = "block";
+      message.innerHTML = "*Please fill in the gaps";
+      message.style.color = "red";
+      message.style.fontSize = "14px";
+      message.style.fontWeight = "bold";
+    } else if (!email.includes("@")) {
+      let message = document.querySelector("form p");
+      message.style.display = "block";
+      message.innerHTML = "*Enter a valid email";
+      message.style.color = "red";
+      message.style.fontSize = "14px";
+      message.style.fontWeight = "bold";
+    } else {
       var objectData = {
         username: username,
         email: email,
         password: password
       };
       var objectDataString = JSON.stringify(objectData);
+      //create user
       $.ajax({
         type: 'POST',
         url: "http://localhost:3000/users",
         contentType: "application/json; charset=utf-8",
         data: objectDataString,
         success: function() {
-          console.log(objectDataString);
+          sessionStorage.setItem('status', 'loggedIn');
+          sessionStorage.setItem('user', username);
+            window.location.replace("user.html");
         },
         error: function() {
-          let message=document.querySelector("form p");
-          message.style.display="block";
-          message.innerHTML="*Username is already used";
-          message.style.color="red";
-          message.style.fontSize="14px";
-          message.style.fontWeight="bold";
+          let message = document.querySelector("form p");
+          message.style.display = "block";
+          message.innerHTML = "*Username is already used";
+          message.style.color = "red";
+          message.style.fontSize = "14px";
+          message.style.fontWeight = "bold";
         }
       });
     }
@@ -134,37 +137,41 @@ if (p.slice(-10) === "login.html") {
     let username = document.querySelector(".username").value;
     let password = document.querySelector(".password").value;
     if (username == "" || password == "") {
-      let message=document.querySelector("form p");
-      message.style.display="block";
-      message.innerHTML="*Please fill in the gaps";
-      message.style.color="red";
-      message.style.fontSize="14px";
-      message.style.fontWeight="bold";
+      let message = document.querySelector("form p");
+      message.style.display = "block";
+      message.innerHTML = "*Please fill in the gaps";
+      message.style.color = "red";
+      message.style.fontSize = "14px";
+      message.style.fontWeight = "bold";
     } else {
       var objectData = {
         username: username,
         password: password
       };
       var objectDataString = JSON.stringify(objectData);
+      //login user
       $.ajax({
-        type: 'PUT',
+        type: 'POST',
         url: "http://localhost:3000/users/" + username,
         contentType: "application/json; charset=utf-8",
         data: objectDataString,
         success: function(data) {
-          if(data==true){//your account exist and you log in
+          if (data == true) { //your account exist and you log in
             sessionStorage.setItem('status', 'loggedIn');
             sessionStorage.setItem('user', username);
             window.location.replace("user.html");
-          }else{
-            let message=document.querySelector("form p");
-            message.style.display="block";
-            message.innerHTML="*Username or password are not valid";
-            message.style.color="red";
-            message.style.fontSize="14px";
-            message.style.fontWeight="bold";
+          } else {
+            let message = document.querySelector("form p");
+            message.style.display = "block";
+            message.innerHTML = "*Username or password are not valid";
+            message.style.color = "red";
+            message.style.fontSize = "14px";
+            message.style.fontWeight = "bold";
           }
 
+        },
+        error: function() {
+          window.location.replace("fail.html");
         }
       });
     }
@@ -182,7 +189,7 @@ if (p.slice(-10) === "movie.html") {
     document.querySelector(".a3").href = "index.html";
     document.querySelector(".a3").innerHTML = "Logout";
   }
-
+  //get selected movie of user
   $.ajax({
     type: 'GET',
     url: "http://www.omdbapi.com/?t=" + localStorage[".movieTitle"] + "&apikey=400514f3",
@@ -200,7 +207,7 @@ if (p.slice(-10) === "movie.html") {
 
 
       let icon = document.querySelector(".bookmarkicon");
-      if(sessionStorage.getItem('status')=="loggedIn"){
+      if (sessionStorage.getItem('status') == "loggedIn") {
         $.ajax({ // to see if this movie is already bookmarked
           type: 'GET',
           url: "http://localhost:3000/" + sessionStorage.getItem('user') + "/movies/" + icon.parentElement.childNodes[0].innerHTML,
@@ -211,8 +218,8 @@ if (p.slice(-10) === "movie.html") {
             }
 
           },
-          fail: function() {
-
+          error: function() {
+            window.location.replace("fail.html");
           }
         });
       }
@@ -223,21 +230,29 @@ if (p.slice(-10) === "movie.html") {
         if (sessionStorage.getItem('status') == 'loggedIn') {
           if (icon.src.slice(-15) == "bookmarkoff.png") {
             icon.src = "images/bookmarkon.png";
+            //add movie to bookmarks of user
             $.ajax({
               type: 'POST',
               url: "http://localhost:3000/" + sessionStorage.getItem('user') + "/movies/" + icon.parentElement.childNodes[0].innerHTML,
               async: true,
               success: function(result) {
                 if (result == true) { //deleted from database successfully
-                  alert("The movie has been added to your bookmarks");
+                  var x = document.getElementById("snackbar");
+                  x.innerHTML = "Movie added to your bookmarks"
+                  x.className = "show";
+                  setTimeout(function() {
+                    x.className = x.className.replace("show", "");
+                  }, 3000);
                 }
 
-              },
-              fail: function() {
 
+              },
+            error: function() {
+                window.location.replace("fail.html");
               }
             });
-          } else { //delete movie from bookmarks
+          } else {
+            //delete movie from bookmarks
             icon.src = "images/bookmarkoff.png";
             $.ajax({
               type: 'DELETE',
@@ -245,20 +260,26 @@ if (p.slice(-10) === "movie.html") {
               async: true,
               success: function(result) {
                 if (result == true) { //deleted from database successfully
-                  alert("The movie has been deleted from your bookmarks");
+                  var x = document.getElementById("snackbar");
+                  x.innerHTML = "Movie removed from your bookmarks"
+                  x.className = "show";
+                  setTimeout(function() {
+                    x.className = x.className.replace("show", "");
+                  }, 3000);
+
                 }
 
               },
-              fail: function() {
-                alert("not ok");
+              error: function() {
+                window.location.replace("fail.html");
               }
             });
           }
         }
       });
     },
-    fail: function() {
-      console.log("fail");
+    error: function() {
+      window.location.replace("fail.html");
     }
   });
 }
@@ -266,19 +287,20 @@ if (p.slice(-10) === "movie.html") {
 //runs in Bookmarks.html
 if (p.slice(-16) === "mybookmarks.html") {
 
-
+  //get all movies of user for bookmarks page
   $.ajax({
     type: 'GET',
     url: "http://localhost:3000/" + sessionStorage.getItem('user') + "/movies",
     async: true,
     success: function(data) { //the user have not saved movies yet
-      if(data.length==0){
+      if (data.length == 0) {
         document.querySelector(".main").innerHTML = "<h1>You have not saved any movie yet</h1>"
-        let h1=document.querySelector(".main h1");
-        h1.style.padding="30%";
+        let h1 = document.querySelector(".main h1");
+        h1.style.padding = "30%";
         console.log(data);
       }
       for (i = 0; i < data.length; i++) {
+        //get every single movie the user has bookmarked
         $.ajax({
           type: 'GET',
           url: "http://www.omdbapi.com/?t=" + data[i] + "&apikey=400514f3",
@@ -302,6 +324,7 @@ if (p.slice(-16) === "mybookmarks.html") {
             let btn = document.querySelectorAll(".deleteicon");
             for (let i = 0; i < btn.length; i++) {
               btn[i].addEventListener('click', function() {
+                //delete movie of users bookmarks
                 $.ajax({
                   type: 'DELETE',
                   url: "http://localhost:3000/" + sessionStorage.getItem('user') + "/movies/" + btn[i].parentElement.parentElement.childNodes[1].innerHTML,
@@ -309,22 +332,22 @@ if (p.slice(-16) === "mybookmarks.html") {
                   success: function(result) {
                     window.location.reload();
                   },
-                  fail: function() {
-
+                error: function() {
+                    window.location.replace("fail.html");
                   }
                 });
               });
             }
 
           },
-          fail: function() {
-
+        error: function() {
+            window.location.replace("fail.html");
           }
         });
       }
     },
-    fail: function() {
-
+  error: function() {
+      window.location.replace("fail.html");
     }
   });
 }
